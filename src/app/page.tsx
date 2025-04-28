@@ -22,6 +22,8 @@ export default function MarketList() {
     lista: Lista;
   };
   const [newLista, setNewLista] = useState<string>("");
+  const [itensCompra, setItensCompra] = useState<string>("")
+  const [itemComprado, setItemComprado] = useState<boolean>(false)
 
   function ListaItens({ lista, setLista }: ListaProps) {
 
@@ -34,9 +36,30 @@ export default function MarketList() {
     }
   }
 
+  const itensList = itensCompra.length > 0 ? itensCompra : [
+    {
+      id: "1",
+      text: "Macarrao",
+      checked: false
+    },
+    {
+      id: "2",
+      text: "Arroz",
+      checked: false
+    },
+    {
+      id: "3",
+      text: "Feijão",
+      checked: false
+    },{
+      id: "4",
+      text: "Açucar",
+      checked: false
+  }
+  ]
+
   function loadItens() {
-    // BUSCA AS INFORMAÇÕES NA API FAKE
-    // SALVA O VALOR NO ESTADO
+
   }
 
   function handleAddItem(event: FormEvent) {
@@ -61,15 +84,22 @@ export default function MarketList() {
     // CARREGA OS PRODUTOS NOVAMENTE // loadItens();
   }
 
+  useEffect(() => {
+    if(itensCompra && itensList.length){
+    }
+  })
+
   return (
     <div>
       {/* <Header /> */}
       <h1>Compras da Semana</h1>
       <div className="adicionar-itens">
-        <TextField label="Digite o item" variant="outlined" />
-        <Button variant="outlined">Adicionar Item</Button>
+        <input type="text" name="itemCompra" id="itemCompra" />
+        <input type="button" value="adicionado" onClick={handleAddItem} />
       </div>
-      <div className="lista-itens"></div>
+      <div className="lista-itens">
+
+      </div>
     </div>
   );
 }
